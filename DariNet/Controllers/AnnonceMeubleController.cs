@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DariNet.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,79 +13,164 @@ namespace DariNet.Controllers
         // GET: AnnonceMeuble
         public ActionResult Index()
         {
-            return View();
+
+            IEnumerable<AnnonceMeuble> annoncesMeuble = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:64189/api/");
+                //HTTP GET
+                var responseTask = client.GetAsync("student");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<AnnonceMeuble>>();
+                    readTask.Wait();
+
+                    annoncesMeuble = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    annoncesMeuble = Enumerable.Empty<AnnonceMeuble>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return View(annoncesMeuble);
         }
 
         // GET: AnnonceMeuble/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            {
+                AnnonceMeuble ANNONCEMEUBLE = null;
+
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+                    //HTTP GET
+                    var responseTask = client.GetAsync("retrieve-announceMeuble/" + id.ToString());
+                    responseTask.Wait();
+
+                    var result = responseTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+                        var readTask = result.Content.ReadAsAsync<AnnonceMeuble>();
+                        readTask.Wait();
+
+                        ANNONCEMEUBLE = readTask.Result;
+                    }
+                }
+                return View(ANNONCEMEUBLE);
+            }
         }
 
         // GET: AnnonceMeuble/Create
-        public ActionResult Create()
+        public ActionResult create()
         {
             return View();
         }
 
-        // POST: AnnonceMeuble/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
+        [HttpPost]
+        public ActionResult create(AnnonceMeuble annonceMeuble)
+        {
+            using (var client = new HttpClient())
             {
-                return View();
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync<AnnonceMeuble>("add-muebleAnnounce", annonceMeuble);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
             }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return View(annonceMeuble);
         }
 
-        // GET: AnnonceMeuble/Edit/5
+       
+
         public ActionResult Edit(int id)
         {
-            return View();
+            AnnonceMeuble ANNONCEMEUBLE = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+                //HTTP GET
+                var responseTask = client.GetAsync("modify-announceMeuble/"+ id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<AnnonceMeuble>();
+                    readTask.Wait();
+
+                    ANNONCEMEUBLE = readTask.Result;
+                }
+            }
+            return View(ANNONCEMEUBLE);
         }
 
-        // POST: AnnonceMeuble/Edit/5
+
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(AnnonceMeuble annonceMeuble)
         {
-            try
+            using (var client = new HttpClient())
             {
-                // TODO: Add update logic here
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/retrieve-all-muebleAnnounce");
 
-                return RedirectToAction("Index");
+                //HTTP POST
+                var putTask = client.PutAsJsonAsync<AnnonceMeuble>("annonceMeuble", annonceMeuble);
+                putTask.Wait();
+
+                var result = putTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(annonceMeuble);
         }
 
-        // GET: AnnonceMeuble/Delete/5
+
+
+        [HttpDelete]
         public ActionResult Delete(int id)
         {
-            return View();
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+
+                //HTTP DELETE
+                var deleteTask = client.DeleteAsync("remove-announceMeuble/" + id.ToString());
+                deleteTask.Wait();
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
+            }
+
+            return RedirectToAction("Index");
         }
 
-        // POST: AnnonceMeuble/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
+
     }
 }
