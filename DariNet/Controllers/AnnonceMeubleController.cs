@@ -18,9 +18,9 @@ namespace DariNet.Controllers
 
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:64189/api/");
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
                 //HTTP GET
-                var responseTask = client.GetAsync("student");
+                var responseTask = client.GetAsync("retrieve-all-muebleAnnounce");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -109,7 +109,7 @@ namespace DariNet.Controllers
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
                 //HTTP GET
-                var responseTask = client.GetAsync("modify-announceMeuble/"+ id.ToString());
+                var responseTask = client.GetAsync("retrieve-announceMeuble/"+id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -130,10 +130,10 @@ namespace DariNet.Controllers
         {
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/retrieve-all-muebleAnnounce");
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
 
                 //HTTP POST
-                var putTask = client.PutAsJsonAsync<AnnonceMeuble>("annonceMeuble", annonceMeuble);
+                var putTask = client.PutAsJsonAsync<AnnonceMeuble>("modify-announceMeuble", annonceMeuble);
                 putTask.Wait();
 
                 var result = putTask.Result;
