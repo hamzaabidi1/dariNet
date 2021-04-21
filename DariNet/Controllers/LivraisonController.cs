@@ -1,6 +1,8 @@
-﻿using System;
+﻿using DariNet.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,13 +13,57 @@ namespace DariNet.Controllers
         // GET: Livraison
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Livraison> livraison = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
+                //HTTP GET
+                var responseTask = client.GetAsync("/retrieve-all-Livraison");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<Livraison>>();
+                    readTask.Wait();
+
+                    livraison = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    livraison = Enumerable.Empty<Livraison>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return View(livraison);
         }
 
         // GET: Livraison/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            Livraison livraison = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
+                //HTTP GET
+                var responseTask = client.GetAsync("retrieve-Livraison/" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Livraison>();
+                    readTask.Wait();
+
+                    livraison = readTask.Result;
+                }
+            }
+            return View(livraison);
         }
 
         // GET: Livraison/Create
@@ -28,62 +74,97 @@ namespace DariNet.Controllers
 
         // POST: Livraison/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Livraison livraison)
         {
-            try
+            using (var client = new HttpClient())
             {
-                // TODO: Add insert logic here
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
 
-                return RedirectToAction("Index");
+                //HTTP POST
+                var postTask = client.PostAsJsonAsync<Livraison>("add-Livraison", livraison);
+                postTask.Wait();
+
+                var result = postTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+
+            return View(livraison);
         }
 
         // GET: Livraison/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            Livraison livraison = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
+                //HTTP GET
+                var responseTask = client.GetAsync("retrieve-Livraison/" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<Livraison>();
+                    readTask.Wait();
+
+                    livraison = readTask.Result;
+                }
+            }
+            return View(livraison);
         }
 
         // POST: Livraison/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Livraison livraison)
         {
-            try
+            using (var client = new HttpClient())
             {
-                // TODO: Add update logic here
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
 
-                return RedirectToAction("Index");
+                //HTTP POST
+                var putTask = client.PutAsJsonAsync<Livraison>("livraison", livraison);
+                putTask.Wait();
+
+                var result = putTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return View(livraison);
         }
 
-        // GET: Livraison/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+     
 
         // POST: Livraison/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
-            try
+            using (var client = new HttpClient())
             {
-                // TODO: Add delete logic here
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
 
-                return RedirectToAction("Index");
+                //HTTP DELETE
+                var deleteTask = client.DeleteAsync("remove-Livraison/" + id.ToString());
+                deleteTask.Wait();
+
+                var result = deleteTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+
+                    return RedirectToAction("Index");
+                }
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction("Index");
         }
     }
 }

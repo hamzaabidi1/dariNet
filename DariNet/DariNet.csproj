@@ -223,11 +223,14 @@
     <Content Include="Views\AnnonceMeuble\Details.cshtml" />
     <Content Include="Views\AnnonceMeuble\Edit.cshtml" />
     <Content Include="Views\AnnonceMeuble\create.cshtml" />
+    <Content Include="Views\Livraison\Index.cshtml" />
+    <Content Include="Views\Livraison\Details.cshtml" />
+    <Content Include="Views\Livraison\Edit.cshtml" />
+    <Content Include="Views\Livraison\create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Achat\" />
-    <Folder Include="Views\Livraison\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

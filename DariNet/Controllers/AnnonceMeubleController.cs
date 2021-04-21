@@ -46,7 +46,7 @@ namespace DariNet.Controllers
         // GET: AnnonceMeuble/Details/5
         public ActionResult Details(int id)
         {
-            {
+            
                 AnnonceMeuble ANNONCEMEUBLE = null;
 
                 using (var client = new HttpClient())
@@ -66,7 +66,7 @@ namespace DariNet.Controllers
                     }
                 }
                 return View(ANNONCEMEUBLE);
-            }
+            
         }
 
         // GET: AnnonceMeuble/Create
