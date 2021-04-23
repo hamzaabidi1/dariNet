@@ -58,8 +58,8 @@
     <Reference Include="System.Net.Http.Extensions, Version=2.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Formatting.dll</HintPath>
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Primitives, Version=4.2.29.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Http.Formatting.Extension.5.2.3.0\lib\System.Net.Http.Primitives.dll</HintPath>
@@ -140,11 +140,13 @@
     <Compile Include="Controllers\AnnonceMeubleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivraisonController.cs" />
+    <Compile Include="Controllers\ReclamationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Annonce.cs" />
     <Compile Include="Models\AnnonceMeuble.cs" />
+    <Compile Include="Models\Reclamation.cs" />
     <Compile Include="Models\Livraison.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -221,12 +223,14 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\AnnonceMeuble\Index.cshtml" />
     <Content Include="Views\AnnonceMeuble\Details.cshtml" />
-    <Content Include="Views\AnnonceMeuble\Edit.cshtml" />
     <Content Include="Views\AnnonceMeuble\create.cshtml" />
     <Content Include="Views\Livraison\Index.cshtml" />
     <Content Include="Views\Livraison\Details.cshtml" />
     <Content Include="Views\Livraison\Edit.cshtml" />
     <Content Include="Views\Livraison\create.cshtml" />
+    <Content Include="Views\AnnonceMeuble\Edit.cshtml" />
+    <Content Include="Views\Reclamation\Create.cshtml" />
+    <Content Include="Views\Reclamation\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

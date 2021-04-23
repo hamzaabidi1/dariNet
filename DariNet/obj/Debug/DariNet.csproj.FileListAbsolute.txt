@@ -87,3 +87,4 @@ C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\obj\Debug\DariNet.csproj.CoreComp
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\obj\Debug\DariNet.csproj.CopyComplete
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\obj\Debug\DariNet.dll
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\obj\Debug\DariNet.pdb
+C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Net.Http.Formatting.xml

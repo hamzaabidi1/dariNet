@@ -13,7 +13,7 @@ namespace DariNet.Models
         public string region { get; set; }
         public string ville { get; set; }
         public string adresse { get; set; }
-        public List<object> images { get; set; }
+       // public List<object> images { get; set; }
         public double prix { get; set; }
     }
 }

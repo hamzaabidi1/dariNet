@@ -1,4 +1,5 @@
 ﻿using DariNet.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,27 +47,27 @@ namespace DariNet.Controllers
         // GET: AnnonceMeuble/Details/5
         public ActionResult Details(int id)
         {
-            
-                AnnonceMeuble ANNONCEMEUBLE = null;
 
-                using (var client = new HttpClient())
+            AnnonceMeuble ANNONCEMEUBLE = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+                //HTTP GET
+                var responseTask = client.GetAsync("retrieve-announceMeuble/" + id.ToString());
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
                 {
-                    client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
-                    //HTTP GET
-                    var responseTask = client.GetAsync("retrieve-announceMeuble/" + id.ToString());
-                    responseTask.Wait();
+                    var readTask = result.Content.ReadAsAsync<AnnonceMeuble>();
+                    readTask.Wait();
 
-                    var result = responseTask.Result;
-                    if (result.IsSuccessStatusCode)
-                    {
-                        var readTask = result.Content.ReadAsAsync<AnnonceMeuble>();
-                        readTask.Wait();
-
-                        ANNONCEMEUBLE = readTask.Result;
-                    }
+                    ANNONCEMEUBLE = readTask.Result;
                 }
-                return View(ANNONCEMEUBLE);
-            
+            }
+            return View(ANNONCEMEUBLE);
+
         }
 
         // GET: AnnonceMeuble/Create
@@ -75,31 +76,33 @@ namespace DariNet.Controllers
             return View();
         }
 
-
+     
         [HttpPost]
-        public ActionResult create(AnnonceMeuble annonceMeuble)
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+           public ActionResult create(AnnonceMeuble annonceMeuble)
+           {
+               using (var client = new HttpClient())
+               {
+                   client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
 
-                //HTTP POST
-                var postTask = client.PostAsJsonAsync<AnnonceMeuble>("add-muebleAnnounce", annonceMeuble);
-                postTask.Wait();
+                   //HTTP POST
+                   var postTask = client.PostAsJsonAsync<AnnonceMeuble>("add-muebleAnnounce", annonceMeuble);
+                   postTask.Wait();
 
-                var result = postTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
-                    return RedirectToAction("Index");
-                }
-            }
+                   var result = postTask.Result;
+                   if (result.IsSuccessStatusCode)
+                   {
+                       return RedirectToAction("Index");
+                   }
+               }
 
-            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+               ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-            return View(annonceMeuble);
-        }
+               return View(annonceMeuble);
+           }
 
-       
+    
+
+    
 
         public ActionResult Edit(int id)
         {
@@ -109,7 +112,7 @@ namespace DariNet.Controllers
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
                 //HTTP GET
-                var responseTask = client.GetAsync("retrieve-announceMeuble/"+id.ToString());
+                var responseTask = client.GetAsync("retrieve-announceMeuble/" + id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -146,31 +149,19 @@ namespace DariNet.Controllers
             return View(annonceMeuble);
         }
 
-
-
-        [HttpDelete]
-        public ActionResult Delete(int id)
+    public async System.Threading.Tasks.Task<ActionResult> Delete(int id)
         {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+            client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                //HTTP DELETE
-                var deleteTask = client.DeleteAsync("remove-announceMeuble/" + id.ToString());
-                deleteTask.Wait();
 
-                var result = deleteTask.Result;
-                if (result.IsSuccessStatusCode)
-                {
 
-                    return RedirectToAction("Index");
-                }
-            }
+
+            HttpResponseMessage response = await client.DeleteAsync("remove-announceMeuble/" + id);
 
             return RedirectToAction("Index");
         }
-
-
 
     }
 }

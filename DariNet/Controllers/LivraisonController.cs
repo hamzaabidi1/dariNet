@@ -51,7 +51,7 @@ namespace DariNet.Controllers
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
                 //HTTP GET
-                var responseTask = client.GetAsync("retrieve-Livraison/" + id.ToString());
+                var responseTask = client.GetAsync("retrieve-Livraison?id=" + id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -105,7 +105,7 @@ namespace DariNet.Controllers
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
                 //HTTP GET
-                var responseTask = client.GetAsync("retrieve-Livraison/" + id.ToString());
+                var responseTask = client.GetAsync("retrieve-Livraison?id=" + id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -153,7 +153,7 @@ namespace DariNet.Controllers
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
 
                 //HTTP DELETE
-                var deleteTask = client.DeleteAsync("remove-Livraison/" + id.ToString());
+                var deleteTask = client.DeleteAsync("remove-Livraison?id=" + id.ToString());
                 deleteTask.Wait();
 
                 var result = deleteTask.Result;
