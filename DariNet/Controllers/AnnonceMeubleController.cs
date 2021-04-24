@@ -46,7 +46,7 @@ namespace DariNet.Controllers
 
         // GET: AnnonceMeuble/Details/5
         public ActionResult Details(int id)
-        {
+            {
 
             AnnonceMeuble ANNONCEMEUBLE = null;
 
@@ -54,7 +54,7 @@ namespace DariNet.Controllers
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
                 //HTTP GET
-                var responseTask = client.GetAsync("retrieve-announceMeuble/" + id.ToString());
+                var responseTask = client.GetAsync("retrieve-announceMeuble/"+id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
