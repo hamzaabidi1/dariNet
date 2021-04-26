@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Web;
@@ -78,18 +79,42 @@ namespace DariNet.Controllers
 
      
         [HttpPost]
-           public ActionResult create(AnnonceMeuble annonceMeuble)
-           {
-               using (var client = new HttpClient())
+           public ActionResult create(AnnonceMeuble annonceMeuble, List<HttpPostedFileBase> imageFiles)
+        {
+            string path = Server.MapPath("~/UploadedFiles/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            foreach (HttpPostedFileBase postedFile in imageFiles)
+            {
+                if (postedFile != null)
+                {
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    postedFile.SaveAs(path + fileName);
+                    ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
+                    List<object> announceimages = new List<object>();
+                 //   announceimages.Add(postedFile.FileName);
+                //    annonceMeuble.images = announceimages;
+                }
+            }
+            using (var client = new HttpClient())
                {
                    client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
 
                    //HTTP POST
+                   
                    var postTask = client.PostAsJsonAsync<AnnonceMeuble>("add-muebleAnnounce", annonceMeuble);
                    postTask.Wait();
-
                    var result = postTask.Result;
-                   if (result.IsSuccessStatusCode)
+
+              
+                /*     if (imageFile.ContentLength > 0)
+                 {
+                     imageFile.SaveAs(Path.Combine(Server.MapPath("~/UploadedFiles"), imageFile.FileName));
+                 }*/
+
+                if (result.IsSuccessStatusCode)
                    {
                        return RedirectToAction("Index");
                    }
@@ -163,5 +188,68 @@ namespace DariNet.Controllers
             return RedirectToAction("Index");
         }
 
+
+        public ActionResult PrixAsc()
+        {
+
+            IEnumerable<AnnonceMeuble> annoncesMeuble = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+                //HTTP GET
+                var responseTask = client.GetAsync("retrieve-all-muebleAnnounce-price-Asc");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<AnnonceMeuble>>();
+                    readTask.Wait();
+
+                    annoncesMeuble = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    annoncesMeuble = Enumerable.Empty<AnnonceMeuble>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return View("Index");
+        }
+        public ActionResult PrixDesc()
+        {
+
+            IEnumerable<AnnonceMeuble> annoncesMeuble = null;
+
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+                //HTTP GET
+                var responseTask = client.GetAsync("retrieve-all-muebleAnnounce-price-Desc");
+                responseTask.Wait();
+
+                var result = responseTask.Result;
+                if (result.IsSuccessStatusCode)
+                {
+                    var readTask = result.Content.ReadAsAsync<IList<AnnonceMeuble>>();
+                    readTask.Wait();
+
+                    annoncesMeuble = readTask.Result;
+                }
+                else //web api sent error response 
+                {
+                    //log response status here..
+
+                    annoncesMeuble = Enumerable.Empty<AnnonceMeuble>();
+
+                    ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
+                }
+            }
+            return View("Index");
+        }
     }
 }

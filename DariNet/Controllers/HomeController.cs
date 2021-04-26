@@ -26,5 +26,11 @@ namespace DariNet.Controllers
 
             return View();
         }
+        public ActionResult AskBot()
+        {
+            ViewBag.Message = "Your contact page.";
+
+            return View();
+        }
     }
 }

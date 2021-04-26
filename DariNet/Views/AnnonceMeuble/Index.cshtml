@@ -14,6 +14,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
                function hideURLbar(){ window.scrollTo(0,1); } </script>
     <!-- //for-mobile-apps -->
+
+    <link href="~/Content/DataTables/css/range.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
     <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
     <!-- js -->
@@ -22,6 +24,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--FlexSlider-->
     <link rel="stylesheet" href="~/Content/flexslider.css" type="text/css" media="screen" />
     <script defer src="~/Scripts/jquery.flexslider.js"></script>
+    <script defer src="~/Scripts/DataTables/range.js"></script>
     <script type="text/javascript">
         $(window).load(function () {
             $('.flexslider').flexslider({
@@ -38,75 +41,85 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- //font-awesome icons -->
     <link href="//fonts.googleapis.com/css?family=Varela+Round&subset=hebrew" rel="stylesheet">
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+
 </head>
 <body>
     <div class="agileinfo-services">
-        
-            <h3 class="w3l_head w3l_head1">Annonces Meuble</h3>
-       
-    </div>
 
-    <p class="eum">
-        @Html.ActionLink("Ajouter Annonce", "Create")
-    </p>
-    <table class="table" id="annonceMeuble">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.description)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.region)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.ville)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.adresse)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.prix)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+        <h3 class="w3l_head w3l_head1">Annonces Meuble</h3>
+
+    </div>
+    <div class="agileinfo-services">
+
+       
+
+        <div>
+            @Html.ActionLink("prix Asc", "PrixAsc") |
+            @Html.ActionLink("prix Desc", "PrixDesc")
+        </div>
+    </div>
+        <p class="eum">
+            @Html.ActionLink("Ajouter Annonce", "Create")
+        </p>
+        <table class="table" id="annonceMeuble">
+            <thead>
                 <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.region)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ville)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.adresse)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.prix)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                    </td>
+                    <th>
+                        @Html.DisplayNameFor(model => model.title)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.region)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ville)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.adresse)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.prix)
+                    </th>
+                    <th></th>
                 </tr>
-            }
-        </tbody>
-    </table>
-    @section scripts{
-        <script>
-            $(document).ready(function () { $("#annonceMeuble").DataTable() })
-        </script>
-    }
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.region)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ville)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.adresse)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.prix)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        @section scripts{
+            <script>
+                $(document).ready(function () { $("#annonceMeuble").DataTable() })
+            </script>
+        }
 </body>
