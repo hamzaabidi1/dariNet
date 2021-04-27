@@ -345,6 +345,7 @@
     <Content Include="images\7.jpg" />
     <Content Include="images\8.jpg" />
     <Content Include="images\9.jpg" />
+    <Content Include="images\backgroundchatbot.jpg" />
     <Content Include="images\banner1.jpg" />
     <Content Include="images\chat.png" />
     <Content Include="images\cross.png" />

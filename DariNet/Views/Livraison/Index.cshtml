@@ -3,53 +3,101 @@
 @{
     ViewBag.Title = "Index";
 }
+<head>
+    <title>Freehold a Real Estates Category Flat Bootstrap Responsive Website Template | Home :: w3layouts</title>
+    <!-- for-mobile-apps -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Freehold Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+    <script type="application/x-javascript">
+        addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+               function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //for-mobile-apps -->
 
-<div class="agileinfo-services">
+    <link href="~/Content/DataTables/css/range.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/Content/style.css" rel="stylesheet" type="text/css" media="all" />
+    <!-- js -->
+    <script type="text/javascript" src="~/Scripts/jquery-2.1.4.min.js"></script>
+    <!-- //js -->
+    <!--FlexSlider-->
+    <link rel="stylesheet" href="~/Content/flexslider.css" type="text/css" media="screen" />
+    <script defer src="~/Scripts/jquery.flexslider.js"></script>
+    <script defer src="~/Scripts/DataTables/range.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+    <!--End-slider-script-->
+    <!-- font-awesome icons -->
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css" />
+    <!-- //font-awesome icons -->
+    <link href="//fonts.googleapis.com/css?family=Varela+Round&subset=hebrew" rel="stylesheet">
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
 
-    <h3 class="w3l_head w3l_head1">Livraisons</h3>
 
-</div>
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.adresse)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tel)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.methodePayement)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.livraisonStatus)
-        </th>
-        <th></th>
-    </tr>
+</head>
+<body>
+    <div class="agileinfo-services">
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.adresse)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tel)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.methodePayement)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.livraisonStatus)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
-        </tr>
+        <h3 class="w3l_head w3l_head1">Livraisons</h3>
+
+    </div>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table" id="livraison">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.adresse)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tel)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.methodePayement)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.livraisonStatus)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.adresse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tel)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.methodePayement)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.livraisonStatus)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    @section scripts{
+        <script>
+            $(document).ready(function () { $("#livraison").DataTable() })
+        </script>
     }
-
-</table>

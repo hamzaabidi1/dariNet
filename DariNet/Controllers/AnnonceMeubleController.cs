@@ -215,7 +215,7 @@ namespace DariNet.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }
-            return View("Index");
+            return View("Index", annoncesMeuble);
         }
         public ActionResult PrixDesc()
         {
@@ -246,7 +246,7 @@ namespace DariNet.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }
-            return View("Index");
+            return View("Index",annoncesMeuble);
         }
     }
 }
