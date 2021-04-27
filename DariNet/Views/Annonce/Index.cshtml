@@ -3,68 +3,49 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
+<div style="text-align:center">
+    <h2>check our new announces </h2>
+</div>
+<div>
+	<a href="@Url.Action("Create","Annonce")" style="color:brown"><i class="far fa-plus-square ">Add</i></a>
+</div>
 @using (Html.BeginForm())
 {
-    <span>
-        recherche par :@Html.TextBox("filtre")
-    </span>
-    <div>
-        @Html.RadioButton("type", "V")@Html.Label("Ville")
-        @Html.RadioButton("type", "A")@Html.Label("Adresse")
-        @Html.RadioButton("type", "R")@Html.Label("Region")
+    <div style="text-align:right">
+        <span>
+            recherche par :@Html.TextBox("filtre")
+        </span>
+        <div>
+            @Html.RadioButton("type", "V")@Html.Label("Ville")
+            @Html.RadioButton("type", "A")@Html.Label("Adresse")
+            @Html.RadioButton("type", "R")@Html.Label("Region")
+        </div>
+        <input type="submit" class="btn-primary" value="Search" id="submit" />
     </div>
-    <input type="submit" value="Search" id="submit" />
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
 
-        <th>
-            @Html.DisplayNameFor(model => model.prix)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.photo)
-        </th>
-
-        <th></th>
-    </tr>
-
+<div class="container">
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.title)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.description)
-            </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.prix)
-            </td>
-            <td>
-                <img src="~/Content/Upload/@item.photo" width="40" height="40" />
+        <div class="col-sm-4 rides-grid">
+            <div class="agileinfo-work">
+                <img src="~/Content/Upload/@item.photo" alt="" height="200" width="200" />
+                <h4>@item.title</h4>
+                <p>@item.description</p>
 
-            </td>
+                <ul>
+                    <li> <p>price : @item.prix</p></li>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
-            </td>
-        </tr>
-
+                    <li><i class="fa fa-arrow-right" aria-hidden="true"></i> <a href="@Url.Action("Details","Annonce",new { id=item.id})">Click on me for more Details</a></li>
+                </ul>
+            </div>
+        </div>
     }
+</div>
 
-</table>
+
 
 <div id="chartContainer"></div>
 
