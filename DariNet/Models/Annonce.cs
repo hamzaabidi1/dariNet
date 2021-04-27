@@ -12,7 +12,7 @@ namespace DariNet.Models
         public string description { get; set; }
         public string categorie { get; set; }
         public double prix { get; set; }
-        public List<object> photo { get; set; }
+        public String photo { get; set; }
         public string adresse { get; set; }
         public string type { get; set; }
         public int surface { get; set; }
@@ -21,12 +21,6 @@ namespace DariNet.Models
         public int nbreChambre { get; set; }
         public string region { get; set; }
         public string ville { get; set; }
-        public List<object> rendezVous { get; set; }
-        public List<object> Messages { get; set; }
-        public List<object> operations { get; set; }
-        public List<object> reviews { get; set; }
-        public List<object> reclamations { get; set; }
-        public List<object> messages { get; set; }
         public int numberOfVisits { get; set; }
     }
 }

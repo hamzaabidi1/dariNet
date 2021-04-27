@@ -1,0 +1,111 @@
+﻿@model IEnumerable<DariNet.Models.Annonce>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@using (Html.BeginForm())
+{
+    <span>
+        recherche par :@Html.TextBox("filtre")
+    </span>
+    <div>
+        @Html.RadioButton("type", "V")@Html.Label("Ville")
+        @Html.RadioButton("type", "A")@Html.Label("Adresse")
+        @Html.RadioButton("type", "R")@Html.Label("Region")
+    </div>
+    <input type="submit" value="Search" id="submit" />
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.prix)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.photo)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.prix)
+            </td>
+            <td>
+                <img src="~/Content/Upload/@item.photo" width="40" height="40" />
+
+            </td>
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+            </td>
+        </tr>
+
+    }
+
+</table>
+
+<div id="chartContainer"></div>
+
+<script type="text/javascript">
+  window.onload = function () {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	exportEnabled: true,
+	animationEnabled: true,
+	theme: "light2",
+	title: {
+		text: "Top wanted Regions"
+	},
+	legend: {
+		cursor: "pointer",
+		itemclick: explodePie,
+		verticalAlign: "center",
+		horizontalAlign: "right"
+	},
+	data: [{
+		type: "pie",
+		showInLegend: true,
+		toolTipContent: "{name}: <strong>{y}%</strong>",
+		startAngle: -45,
+		indexLabel: "{name} ({y}%)",
+		indexLabelFontColor: "#12122B",
+		indexLabelPlacement: "inside",
+		indexLabelFontSize: 15,
+		dataPoints: @Html.Raw(ViewBag.DataPoints)
+	}]
+});
+chart.render();
+
+function explodePie(e) {
+	if (typeof (e.dataSeries.dataPoints[e.dataPointIndex].exploded) === "undefined" || !e.dataSeries.dataPoints[e.dataPointIndex].exploded) {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = true;
+	} else {
+		e.dataSeries.dataPoints[e.dataPointIndex].exploded = false;
+	}
+	e.chart.render();
+}
+
+}
+</script>

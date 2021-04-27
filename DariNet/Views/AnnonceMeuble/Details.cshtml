@@ -58,11 +58,11 @@
             @Html.DisplayFor(model => model.prix)
         </dd>
     </dl>
-    @*Html.DisplayFor(model=>images)*@
     @foreach (var img in Model.images)
     {
-        <img src="~/UploadedFiles/"+img />
+
         <img src="@Url.Content("~/UploadedFiles/"+img)" width="100" height="100" />
+
     }
 </div>
 <p>

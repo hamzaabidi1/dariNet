@@ -69,6 +69,12 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -136,15 +142,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AbonnementController.cs" />
     <Compile Include="Controllers\AchatController.cs" />
+    <Compile Include="Controllers\AnnonceController.cs" />
     <Compile Include="Controllers\AnnonceMeubleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivraisonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Abonnement.cs" />
     <Compile Include="Models\Annonce.cs" />
     <Compile Include="Models\AnnonceMeuble.cs" />
+    <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\Reclamation.cs" />
     <Compile Include="Models\Livraison.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -471,9 +481,19 @@
     <Content Include="Views\AnnonceMeuble\Edit.cshtml" />
     <Content Include="Views\AnnonceMeuble\Details.cshtml" />
     <Content Include="Views\Home\AskBot.cshtml" />
+    <Content Include="Views\Annonce\create.cshtml" />
+    <Content Include="Views\Annonce\Details.cshtml" />
+    <Content Include="Views\Annonce\Edit.cshtml" />
+    <Content Include="Views\Annonce\Index.cshtml" />
+    <Content Include="Views\Abonnement\Subscribe.cshtml" />
+    <Content Include="Views\Abonnement\Index.cshtml" />
+    <Content Include="Views\Abonnement\Edit.cshtml" />
+    <Content Include="Views\Abonnement\Details.cshtml" />
+    <Content Include="Views\Abonnement\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Upload\" />
     <Folder Include="UploadedFiles\" />
     <Folder Include="Views\Achat\" />
   </ItemGroup>
