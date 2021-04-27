@@ -83,37 +83,45 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <th>
                         @Html.DisplayNameFor(model => model.prix)
                     </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.images)
+                    </th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var item in Model)
                 {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.title)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.region)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ville)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.adresse)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.prix)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                        </td>
-                    </tr>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.region)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ville)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.adresse)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.prix)
+                    </td>
+                    <td>
+                        <img src="~/UploadedFiles/@item.images[0]" width="40" height="40" onclick="window.open(this.src,'_blank','toolbar=0, location=0, directories=0, status=0, scrollbars=0, resizable=0, copyhistory=0, menuBar=0, width='+1100+', height='+600);" />
+                      
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

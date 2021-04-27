@@ -61,7 +61,7 @@
     @foreach (var img in Model.images)
     {
 
-        <img src="@Url.Content("~/UploadedFiles/"+img)" width="100" height="100" />
+        <img src="@Url.Content("~/UploadedFiles/"+img)" width="100" height="100" onclick="window.open(this.src,'_blank','toolbar=0, location=0, directories=0, status=0, scrollbars=0, resizable=0, copyhistory=0, menuBar=0, width='+1100+', height='+600);" />
 
     }
 </div>
