@@ -496,9 +496,7 @@
     <Content Include="Views\Annonce\Edit.cshtml" />
     <Content Include="Views\Annonce\Index.cshtml" />
     <Content Include="Views\Abonnement\Subscribe.cshtml" />
-    <Content Include="Views\Abonnement\Index.cshtml" />
     <Content Include="Views\Abonnement\Edit.cshtml" />
-    <Content Include="Views\Abonnement\Details.cshtml" />
     <Content Include="Views\Abonnement\Create.cshtml" />
     <Content Include="Views\User\ConnctedUsers.cshtml" />
     <Content Include="Views\User\ForgetPassword.cshtml" />
@@ -514,6 +512,10 @@
     <Content Include="Views\Reclamation\Index.cshtml" />
     <Content Include="Views\Reclamation\ReclamationNull.cshtml" />
     <Content Include="Views\Reclamation\Repondre.cshtml" />
+    <Content Include="Views\Shared\_Layout1.cshtml" />
+    <Content Include="Views\Annonce\Statistics.cshtml" />
+    <Content Include="Views\Abonnement\Details.cshtml" />
+    <Content Include="Views\Abonnement\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

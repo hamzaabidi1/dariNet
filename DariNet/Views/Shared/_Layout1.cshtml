@@ -5,8 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mon application ASP.NET</title>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
-    <script src="https://kit.fontawesome.com/7e8994375a.js" crossorigin="anonymous"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -28,12 +26,8 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Accueil", "Index", "Home")</li>
                     <li>@Html.ActionLink("AnnonceMeuble", "Index", "AnnonceMeuble")</li>
-                    <li>@Html.ActionLink("Livraisons", "Index", "Livraison")</li>
-                    <li>@Html.ActionLink("Deposer Annonce", "Create", "Annonce")</li>
-                    <li>@Html.ActionLink("Abonnement", "Index", "Abonnement")</li>
-                    <li>@Html.ActionLink("Reclamations", "Index", "Reclamation")</li>
-                    <li>@Html.ActionLink("À propos de", "About", "Home")</li>
-                    <li>@Html.ActionLink("AskBot", "AskBot", "Home")</li>
+                    <li>@Html.ActionLink("Annonce", "Index", "Annonce")</li>
+                   
                 </ul>
             </div>
         </div>

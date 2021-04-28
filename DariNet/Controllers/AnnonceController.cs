@@ -61,7 +61,7 @@ namespace DariNet.Controllers
                 response = Client.GetAsync("Dari/All/Annonce/retrieve-Announces-ville/" + filtre).Result;
 
             }
-            else if (type == "A")
+            else if (type == "R")
             {
                 response = Client.GetAsync("Dari/All/Annonce/retrieve-all-Announces-region/" + filtre).Result;
             }
@@ -112,7 +112,7 @@ namespace DariNet.Controllers
 
             HttpResponseMessage response = await client.PostAsync("Dari/All/Annonce/add-Announce", httpContent);
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","Home");
         }
 
         public async System.Threading.Tasks.Task<ActionResult> Delete(int id)
@@ -164,6 +164,34 @@ namespace DariNet.Controllers
             }
 
             return View(annonce);
+        }
+        public ActionResult Statistics()
+        {
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:8091");
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = Client.GetAsync("Dari/All/Annonce/retrieve-all-announces").Result;
+            IEnumerable<Annonce> Annonces;
+            if (response.IsSuccessStatusCode)
+            {
+                Annonces = response.Content.ReadAsAsync<IEnumerable<Annonce>>().Result;
+            }
+            else
+            {
+                Annonces = null;
+            }
+
+            List<DataPoint> dataPoints = new List<DataPoint>();
+            foreach (var item in Annonces)
+            {
+                if (item.numberOfVisits > 0)
+                    dataPoints.Add(new DataPoint(item.region, item.numberOfVisits));
+            }
+            
+
+
+            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+            return View();
         }
     }
 }

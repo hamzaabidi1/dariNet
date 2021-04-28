@@ -3,13 +3,14 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<div style="text-align:center">
+         <h2>Consulter Nos Abonnements</h2>
+</div>
+<div style="margin-bottom:5px">
+    <a href='@Url.Action("Create","Abonnement")'><button type="button" class="btn btn-primary px-3"><i class="fas fa-plus-circle" aria-hidden="true"></i></button></a>
+    
+</div>
+<table class="table table-responsive">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.nom)
@@ -34,9 +35,12 @@
             </td>
 
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id })
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                @*@Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.id })
+        @Html.ActionLink("Delete", "Delete", new { id = item.id })*@
+                <a href='@Url.Action("Edit","Abonnement",new { id = item.id })'><button type="button" class="btn btn-outline-danger btn-rounded waves-effect">Edit</button></a>
+                <a href='@Url.Action("Details","Abonnement",new { id = item.id })'><button type="button" class="btn btn-outline-danger btn-rounded waves-effect">Details</button></a>
+                <a href='@Url.Action("Delete","Abonnement",new { id = item.id })'><button type="button" class="btn btn-outline-danger btn-rounded waves-effect">Delete</button></a>
             </td>
         </tr>
     }

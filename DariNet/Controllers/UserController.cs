@@ -16,9 +16,9 @@ namespace DariNet.Controllers
         public ActionResult Users()
         {
             HttpClient Client = new HttpClient();
-            Client.BaseAddress = new Uri("https://localhost:8091");
+            Client.BaseAddress = new Uri("https://localhost:8091/Dari/All/");
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = Client.GetAsync("http://localhost:8091/getAllUsers").Result;
+            HttpResponseMessage response = Client.GetAsync("getAllUsers").Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -35,9 +35,9 @@ namespace DariNet.Controllers
         public ActionResult ConnctedUsers()
         {
             HttpClient Client = new HttpClient();
-            Client.BaseAddress = new Uri("https://localhost:8091");
+            Client.BaseAddress = new Uri("https://localhost:8091/Dari/All/");
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = Client.GetAsync("http://localhost:8091/getConnctedUsers").Result;
+            HttpResponseMessage response = Client.GetAsync("getConnctedUsers").Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -74,7 +74,7 @@ namespace DariNet.Controllers
            // {
                 HttpClient client = new HttpClient();
 
-                client.BaseAddress = new Uri("http://localhost:8091");
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/");
                 string json = JsonConvert.SerializeObject(signUp);
 
                 StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -100,7 +100,7 @@ namespace DariNet.Controllers
             // {
             HttpClient client = new HttpClient();
 
-            client.BaseAddress = new Uri("http://localhost:8091");
+            client.BaseAddress = new Uri("http://localhost:8091/Dari/All/");
             string json = JsonConvert.SerializeObject(user);
 
             StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -125,7 +125,7 @@ namespace DariNet.Controllers
             { 
 
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("http://localhost:8091");
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/");
                 string json = JsonConvert.SerializeObject(sign);
 
                 StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -149,7 +149,7 @@ namespace DariNet.Controllers
             {
 
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("http://localhost:8091");
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/");
                 string json = JsonConvert.SerializeObject(sign);
 
                 StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -191,7 +191,7 @@ namespace DariNet.Controllers
 
 
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("http://localhost:8091");
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/");
                 string json = JsonConvert.SerializeObject(sign);
 
                 StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
@@ -206,7 +206,7 @@ namespace DariNet.Controllers
                     ViewBag.erreur = user1.message;
                 }else
                 {
-                    return RedirectToAction("Welcome");
+                    return RedirectToAction("welcome");
                 }
 
 
@@ -231,9 +231,9 @@ namespace DariNet.Controllers
         {
             
             HttpClient Client = new HttpClient();
-            Client.BaseAddress = new Uri("https://localhost:8091");
+            Client.BaseAddress = new Uri("https://localhost:8091/Dari/All/");
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = Client.GetAsync("http://localhost:8091/getMyInfo").Result;
+            HttpResponseMessage response = Client.GetAsync("getMyInfo").Result;
 
             if (response.IsSuccessStatusCode)
             {
@@ -260,7 +260,7 @@ namespace DariNet.Controllers
             {
                 
                 HttpClient client = new HttpClient();
-                client.BaseAddress = new Uri("http://localhost:8091");
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/");
                 string json = JsonConvert.SerializeObject(user);
 
                 StringContent httpContent = new StringContent(json, System.Text.Encoding.UTF8, "application/json");
