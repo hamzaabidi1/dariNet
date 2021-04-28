@@ -50,16 +50,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <h3 class="w3l_head w3l_head1">Annonces Meuble</h3>
 
     </div>
-    @using (Html.BeginForm())
-    {
+   
         <p>
             @Html.ActionLink("prix Asc", "PrixAsc") |
             @Html.ActionLink("prix Desc", "PrixDesc")
-            @Html.RadioButton("type", "V")@Html.Label("prix Asc")
-            @Html.RadioButton("type", "A")@Html.Label("Prix Desc")
-            <input type="submit" value="Search" id="submit" />
         </p>
-    }
+    
         <p class="eum">
             @Html.ActionLink("Ajouter Annonce", "Create")
         </p>

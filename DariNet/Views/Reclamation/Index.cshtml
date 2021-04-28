@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title> </title>
+
+</head>
+<body>
+
+    <a href="@Url.Action("Create","Reclamation")">add new reclamation</a>
+
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>id</th>
+            <th>subject</th>
+            <th>description</th>
+            <th>categorie</th>
+            <th>reponse</th>
+            <th>repondu</th>
+            <th>user</th>
+            
+        </tr>
+        @foreach (var p in ViewBag.result)
+        {
+    <tr>
+        <td>@p.id</td>
+        <td>@p.subject</td>
+        <td>@p.description</td>
+        <td>@p.categorie</td>
+        <td>@p.reponse</td>
+        <td>@p.repondu</td>
+        <td>@p.user</td>
+       <td> <a href="@Url.Action("Repondre","Reclamation")">Repondre</a></td>
+    </tr>
+
+        }
+
+    </table>
+
+</body>
+</html>

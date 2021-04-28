@@ -217,7 +217,7 @@ namespace DariNet.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }
-            return RedirectToAction("Index", annoncesMeuble);
+            return View("Index", annoncesMeuble);
         }
         public ActionResult PrixDesc()
         {
@@ -257,7 +257,7 @@ namespace DariNet.Controllers
             Client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
             Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
             HttpResponseMessage response  = new HttpResponseMessage();
-            if (String.IsNullOrEmpty(type))
+            if (string.IsNullOrEmpty(type))
             {
                 response = Client.GetAsync("retrieve-all-muebleAnnounce").Result;
 

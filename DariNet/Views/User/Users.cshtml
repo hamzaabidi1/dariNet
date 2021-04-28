@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title> </title>
+
+</head>
+<body>
+
+    <a href="@Url.Action("ConnctedUsers","User")">Conncted Users</a>
+
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>userId</th>
+            <th>name</th>
+            <th>email</th>
+            <th>gender</th>
+            <th>address</th>
+            <th>dateCreate</th>
+            <th>lastLoginDate</th>
+            <th>point</th>
+        </tr>
+        @foreach (var p in ViewBag.result)
+        {
+            <tr>
+                <td>@p.userId</td>
+                <td>@p.name</td>
+                <td>@p.email</td>
+                <td>@p.sex</td>
+                <td>@p.address</td>
+                <td>@p.dateCreate</td>
+                <td>@p.lastLoginDate</td>
+                <td>@p.point</td>
+            </tr>
+
+        }
+
+    </table>
+
+</body>
+</html>

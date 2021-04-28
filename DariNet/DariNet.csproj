@@ -148,6 +148,8 @@
     <Compile Include="Controllers\AnnonceMeubleController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LivraisonController.cs" />
+    <Compile Include="Controllers\ReclamationController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -155,8 +157,14 @@
     <Compile Include="Models\Annonce.cs" />
     <Compile Include="Models\AnnonceMeuble.cs" />
     <Compile Include="Models\DataPoint.cs" />
+    <Compile Include="Models\Logg.cs" />
+    <Compile Include="Models\LoginRequest.cs" />
     <Compile Include="Models\Reclamation.cs" />
     <Compile Include="Models\Livraison.cs" />
+    <Compile Include="Models\ResetPassword.cs" />
+    <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\SignUpRequest.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +332,7 @@
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\flexslider.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\Login.css" />
     <Content Include="Content\range.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\swipebox.css" />
@@ -491,6 +500,20 @@
     <Content Include="Views\Abonnement\Edit.cshtml" />
     <Content Include="Views\Abonnement\Details.cshtml" />
     <Content Include="Views\Abonnement\Create.cshtml" />
+    <Content Include="Views\User\ConnctedUsers.cshtml" />
+    <Content Include="Views\User\ForgetPassword.cshtml" />
+    <Content Include="Views\User\GetMyInfo.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\logout.cshtml" />
+    <Content Include="Views\User\ResetPassword.cshtml" />
+    <Content Include="Views\User\Signup.cshtml" />
+    <Content Include="Views\User\UpdateUser.cshtml" />
+    <Content Include="Views\User\Users.cshtml" />
+    <Content Include="Views\User\Welcome.cshtml" />
+    <Content Include="Views\Reclamation\Create.cshtml" />
+    <Content Include="Views\Reclamation\Index.cshtml" />
+    <Content Include="Views\Reclamation\ReclamationNull.cshtml" />
+    <Content Include="Views\Reclamation\Repondre.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

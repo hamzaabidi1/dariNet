@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Welcome";
+
+}
+
+<h2>Welcome @ViewBag.name</h2>
+
+
+
+<div>@Html.ActionLink("Back to List", "Index")</div>
+<div>@Html.ActionLink("My info", "GetMyInfo")</div>
+<div>@Html.ActionLink("Update User", "UpdateUser")</div>
+
+
+@using (Html.BeginForm("logout", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="form-group">
+
+        <input type="submit" value="logout" class="btn float-right login_btn">
+    </div>
+}
+

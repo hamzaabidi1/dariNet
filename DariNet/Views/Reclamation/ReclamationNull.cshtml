@@ -1,0 +1,41 @@
+﻿@model DariNet.Models.Reclamation
+@{
+    ViewBag.Title = "ReclamationNull";
+}
+<html>
+<h2>ReclamationNull</h2>
+<body>
+
+    
+
+    <table cellpadding="2" cellspacing="2" border="1">
+        <tr>
+            <th>id</th>
+            <th>subject</th>
+            <th>description</th>
+            <th>categorie</th>
+            <th>reponse</th>
+            <th>repondu</th>
+            <th>user</th>
+
+        </tr>
+        @foreach (var p in ViewBag.result)
+        {
+            <tr>
+                <td>@p.id</td>
+                <td>@p.subject</td>
+                <td>@p.description</td>
+                <td>@p.categorie</td>
+                <td>@p.reponse</td>
+                <td>@p.repondu</td>
+                <td>@p.user</td>
+
+            </tr>
+
+        }
+
+    </table>
+
+</body>
+</html>
+
