@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI;
 
 namespace DariNet.Controllers
 {
@@ -47,7 +48,7 @@ namespace DariNet.Controllers
 
         // GET: AnnonceMeuble/Details/5
         public ActionResult Details(int id)
-            {
+        {
 
             AnnonceMeuble ANNONCEMEUBLE = null;
 
@@ -55,7 +56,7 @@ namespace DariNet.Controllers
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
                 //HTTP GET
-                var responseTask = client.GetAsync("retrieve-announceMeuble/"+id.ToString());
+                var responseTask = client.GetAsync("retrieve-announceMeuble/" + id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -77,16 +78,16 @@ namespace DariNet.Controllers
             return View();
         }
 
-     
+
         [HttpPost]
-           public ActionResult create(AnnonceMeuble annonceMeuble, List<HttpPostedFileBase> imageFiles)
+        public ActionResult create(AnnonceMeuble annonceMeuble, List<HttpPostedFileBase> imageFiles)
         {
             List<String> images = new List<String>();
             foreach (HttpPostedFileBase postedFile in imageFiles)
-            {    
+            {
                 images.Add(postedFile.FileName);
                 annonceMeuble.images = images;
-                    }
+            }
             string path = Server.MapPath("~/UploadedFiles/");
             if (!Directory.Exists(path))
             {
@@ -102,29 +103,30 @@ namespace DariNet.Controllers
                 }
             }
             using (var client = new HttpClient())
-               {
-                   client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+            {
+                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
 
-                   //HTTP POST
-                   
-                   var postTask = client.PostAsJsonAsync<AnnonceMeuble>("add-muebleAnnounce", annonceMeuble);
-                   postTask.Wait();
-                   var result = postTask.Result;
+                //HTTP POST
+
+                var postTask = client.PostAsJsonAsync<AnnonceMeuble>("add-muebleAnnounce", annonceMeuble);
+                postTask.Wait();
+                var result = postTask.Result;
 
                 if (result.IsSuccessStatusCode)
-                   {
-                       return RedirectToAction("Index");
-                   }
-               }
+                {
+                    Response.Write("<script language=javascript>alert('Announce added succefuly')</script>");
+                    return RedirectToAction("Index");
+                }
+            }
 
-               ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
+            ModelState.AddModelError(string.Empty, "Server Error. Please contact administrator.");
 
-               return View(annonceMeuble);
-           }
+            return View(annonceMeuble);
+        }
 
-    
 
-    
+
+
 
         public ActionResult Edit(int id)
         {
@@ -171,7 +173,7 @@ namespace DariNet.Controllers
             return View(annonceMeuble);
         }
 
-    public async System.Threading.Tasks.Task<ActionResult> Delete(int id)
+        public async System.Threading.Tasks.Task<ActionResult> Delete(int id)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
@@ -215,7 +217,7 @@ namespace DariNet.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }
-            return View("Index", annoncesMeuble);
+            return RedirectToAction("Index", annoncesMeuble);
         }
         public ActionResult PrixDesc()
         {
@@ -246,7 +248,46 @@ namespace DariNet.Controllers
                     ModelState.AddModelError(string.Empty, "Server error. Please contact administrator.");
                 }
             }
-            return View("Index",annoncesMeuble);
+            return View("Index", annoncesMeuble);
         }
-    }
+        [HttpPost]
+        public ActionResult Index(string type)
+        {
+            HttpClient Client = new HttpClient();
+            Client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+            Client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response  = new HttpResponseMessage();
+            if (String.IsNullOrEmpty(type))
+            {
+                response = Client.GetAsync("retrieve-all-muebleAnnounce").Result;
+
+            }
+            else if (type == "V")
+            {
+                response = Client.GetAsync("retrieve-all-muebleAnnounce-price-Asc").Result;
+
+            }
+            else if (type == "A")
+            {
+                response = Client.GetAsync("retrieve-all-muebleAnnounce-price-Desc").Result;
+            }
+           
+            IEnumerable<AnnonceMeuble> Annonces;
+            if (response.IsSuccessStatusCode)
+            {
+                Annonces = response.Content.ReadAsAsync<IEnumerable<AnnonceMeuble>>().Result;
+            }
+            else
+            {
+                Annonces = null;
+            }
+            return View(Annonces);
+        }
+        public ActionResult Acheter(int ID)
+        {
+            return RedirectToAction("Create", "Livraison",ID);
+        }
+
+
+        }
 }

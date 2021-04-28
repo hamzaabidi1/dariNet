@@ -61,7 +61,7 @@ namespace DariNet.Controllers
                 response = Client.GetAsync("Dari/All/Annonce/retrieve-Announces-ville/" + filtre).Result;
 
             }
-            else if (type == "R")
+            else if (type == "A")
             {
                 response = Client.GetAsync("Dari/All/Annonce/retrieve-all-Announces-region/" + filtre).Result;
             }
