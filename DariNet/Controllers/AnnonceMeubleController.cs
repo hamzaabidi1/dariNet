@@ -153,22 +153,43 @@ namespace DariNet.Controllers
 
 
         [HttpPost]
-        public ActionResult Edit(AnnonceMeuble annonceMeuble)
+        public ActionResult Edit(AnnonceMeuble annonceMeuble ,List<HttpPostedFileBase> imageFiles)
         {
-            using (var client = new HttpClient())
+            List<String> images = new List<String>();
+            foreach (HttpPostedFileBase postedFile in imageFiles)
             {
-                client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
-
-                //HTTP POST
-                var putTask = client.PutAsJsonAsync<AnnonceMeuble>("modify-announceMeuble", annonceMeuble);
-                putTask.Wait();
-
-                var result = putTask.Result;
-                if (result.IsSuccessStatusCode)
+                images.Add(postedFile.FileName);
+                annonceMeuble.images = images;
+            }
+            string path = Server.MapPath("~/UploadedFiles/");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            foreach (HttpPostedFileBase postedFile in imageFiles)
+            {
+                if (postedFile != null)
                 {
-
-                    return RedirectToAction("Index");
+                    string fileName = Path.GetFileName(postedFile.FileName);
+                    postedFile.SaveAs(path + fileName);
+                    ViewBag.Message += string.Format("<b>{0}</b> uploaded.<br />", fileName);
                 }
+            }
+            using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri("http://localhost:8091/Dari/All/AnnonceMeuble/");
+
+                    //HTTP POST
+                    var putTask = client.PutAsJsonAsync<AnnonceMeuble>("modify-announceMeuble", annonceMeuble);
+                    putTask.Wait();
+
+                    var result = putTask.Result;
+                    if (result.IsSuccessStatusCode)
+                    {
+
+                        return RedirectToAction("Index");
+                    }
+                
             }
             return View(annonceMeuble);
         }

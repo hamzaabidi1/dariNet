@@ -65,6 +65,9 @@ C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.WebPages.Deploymen
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.WebPages.dll
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.WebPages.Razor.dll
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\WebGrease.dll
+C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\Newtonsoft.Json.xml
+C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Net.Http.Formatting.xml
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.Helpers.xml
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.Mvc.xml
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.Optimization.xml
@@ -72,9 +75,7 @@ C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.Razor.xml
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.WebPages.xml
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.WebPages.Deployment.xml
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Web.WebPages.Razor.xml
-C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\Newtonsoft.Json.xml
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\Antlr3.Runtime.pdb
-C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\fr\System.Web.Helpers.resources.dll
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\fr\System.Web.Mvc.resources.dll
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\fr\System.Web.Optimization.resources.dll
@@ -87,4 +88,3 @@ C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\obj\Debug\DariNet.csproj.CoreComp
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\obj\Debug\DariNet.csproj.CopyComplete
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\obj\Debug\DariNet.dll
 C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\obj\Debug\DariNet.pdb
-C:\Users\hamza\OneDrive\Bureau\DariNet\DariNet\bin\System.Net.Http.Formatting.xml
