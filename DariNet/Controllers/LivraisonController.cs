@@ -19,7 +19,7 @@ namespace DariNet.Controllers
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
                 //HTTP GET
-                var responseTask = client.GetAsync("/retrieve-all-Livraison");
+                var responseTask = client.GetAsync("retrieve-all-Livraison");
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -46,12 +46,12 @@ namespace DariNet.Controllers
         public ActionResult Details(int id)
         {
             Livraison livraison = null;
-
+            livraison.livraisonStatus = "encours";
             using (var client = new HttpClient())
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
                 //HTTP GET
-                var responseTask = client.GetAsync("retrieve-Livraison?id=" + id.ToString());
+                var responseTask = client.GetAsync("retrieve-Livraison/" + id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
@@ -105,7 +105,7 @@ namespace DariNet.Controllers
             {
                 client.BaseAddress = new Uri("http://localhost:8091/Dari/All/Livraison/");
                 //HTTP GET
-                var responseTask = client.GetAsync("retrieve-Livraison?id=" + id.ToString());
+                var responseTask = client.GetAsync("retrieve-Livraison/" + id.ToString());
                 responseTask.Wait();
 
                 var result = responseTask.Result;
